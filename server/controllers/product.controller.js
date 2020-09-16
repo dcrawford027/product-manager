@@ -21,13 +21,13 @@ module.exports = {
     },
 
     updateProduct: (req,res) => {
-        Product.findOneAndUpdate({ _id: req.params.id }, req.body, { runValidators: true, new: true })
+        Product.findOneAndUpdate({ _id: req.params.id }, req.body, { runValidators: true, new: true, useFindAndModify: false })
             .then(data => res.json(data))
             .catch(err => res.json(err))
     },
 
     deleteProduct: (req,res) => {
-        Product.findOneAndDelete({ _id: req.params.id })
+        Product.findOneAndDelete({ _id: req.params.id }, { useFindAndModify: false })
             .then(data => res.json(data))
             .catch(err => res.json(err));
     }
